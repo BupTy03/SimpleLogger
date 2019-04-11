@@ -1,13 +1,7 @@
 #ifndef SIMPLE_LOGGER_HPP
 #define SIMPLE_LOGGER_HPP
 
-// for std::localtime()
-#define _CRT_SECURE_NO_WARNINGS
-
 #include <string>
-#include <sstream>
-#include <ctime>
-#include <iomanip>
 #include <mutex>
 #include <atomic>
 
@@ -66,13 +60,7 @@ private:
 	inline bool hasCriticalLvl()	const noexcept { return getBit(logLevel_, 1); }
 	inline bool hasFatalLvl()		const noexcept { return getBit(logLevel_, 0); }
 
-	std::string getCurrentDateTime() const
-	{
-		auto t = std::time(nullptr);
-		std::ostringstream os;
-		os << std::put_time(std::localtime(&t), dateTimeFormat_.c_str());
-		return os.str();
-	}
+	std::string getCurrentDateTime() const;
 
 private:
 	std::atomic<int> logLevel_;

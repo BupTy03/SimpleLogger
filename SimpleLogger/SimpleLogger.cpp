@@ -1,12 +1,26 @@
+// for std::localtime()
+#define _CRT_SECURE_NO_WARNINGS
+
 #include "SimpleLogger.hpp"
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
+#include <ctime>
+#include <iomanip>
 
 SimpleLogger& SimpleLogger::Instance()
 {
 	static SimpleLogger inst;
 	return inst;
+}
+
+std::string SimpleLogger::getCurrentDateTime() const
+{
+	auto t = std::time(nullptr);
+	std::ostringstream os;
+	os << std::put_time(std::localtime(&t), dateTimeFormat_.c_str());
+	return os.str();
 }
 
 void SimpleLogger::setDateTimeFormat(const std::string& fmt)
