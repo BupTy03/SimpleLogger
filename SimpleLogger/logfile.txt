@@ -1,0 +1,4 @@
+2019-04-11 14:07:30 MY_TAG message for log
+2019-04-11 14:07:30 DEBUG message for debug
+2019-04-11 14:07:30 CRITICAL message for critical
+2019-04-11 14:07:30 FATAL message for fatal
